@@ -34,9 +34,8 @@ services:
       - ECOS_EUREKA_INSTANCE_PORT=8080
       - JHIPSTER_REGISTRY_PASSWORD=ec0sr3g1strypasswd
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
-      - JAVA_OPTS=-Duser.country=RU -Duser.language=ru -Djava.security.egd=file:///dev/urandom -Xmx3G
+      - JAVA_OPTS=-Duser.country=RU -Duser.language=ru -Djava.security.egd=file:///dev/urandom -Xmx2G
     volumes:
-      - /opt/alfresco/license:/opt/tomcat/shared/classes/alfresco/ecos
       - ./conf:/tmp/alfresco
     networks:
       - app_network
