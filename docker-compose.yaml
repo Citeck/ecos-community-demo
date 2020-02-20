@@ -1,0 +1,338 @@
+version: '3'
+networks:
+  app_network:
+    driver: bridge
+services:
+  ecos:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    container_name: ecos
+    restart: unless-stopped
+    expose:
+      - 8080/tcp
+      - 8443/tcp
+    environment:
+      - TWEAK_SOLR=false
+      - DB_HOST=ecos-postgresql
+      - DB_PASSWORD=ec0sp@sswd
+      - ALFRESCO_HOSTNAME=localhost
+      - ALFRESCO_PROTOCOL=http
+      - SHARE_HOSTNAME=localhost
+      - SHARE_PROTOCOL=http
+      - SHARE_PORT=80
+      - ALFRESCO_PORT=80
+      - FLOWABLE_URL=http://localhost
+      - SOLR_STORE=/var/lib/solr4
+      - MAIL_HOST=mailhog
+      - MAIL_PORT=1025
+      - FLOWABLE_DB_HOST=ecos-postgresql
+      - FLOWABLE_DB_PASSWORD=ec0sp@sswd
+      - ECOS_EUREKA_INSTANCE_HOST=ecos
+      - ECOS_EUREKA_INSTANCE_IP=ecos
+      - ECOS_EUREKA_INSTANCE_PORT=8080
+      - JHIPSTER_REGISTRY_PASSWORD=ec0sr3g1strypasswd
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+      - JAVA_OPTS=-Duser.country=RU -Duser.language=ru -Djava.security.egd=file:///dev/urandom -Xmx3G
+    volumes:
+      - /opt/alfresco/license:/opt/tomcat/shared/classes/alfresco/ecos
+      - ./conf:/tmp/alfresco
+    networks:
+      - app_network
+    tty: true
+    hostname: community
+    image: nexus.citeck.ru/ecos-community:3.16.1-5.1.f-com
+    stdin_open: true
+    depends_on:
+      - ecos-postgresql
+  ecos-postgresql:
+    container_name: ecos-postgresql
+    restart: unless-stopped
+    expose:
+      - 5432/tcp
+    environment:
+      - DB_PASSWORD=ec0sp@sswd
+      - DB_NAME=alfresco
+      - FLOWABLE_DBNAME=alf_flowable
+      - HISTORY_DBNAME=history_service
+      - CASE_MODEL_DBNAME=alfresco_case_model
+    tty: true
+    hostname: ecos-postgresql
+    image: nexus.citeck.ru/ecos-postgres:9.4-alpine
+    stdin_open: true
+    networks:
+      - app_network
+  ecos-proxy:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    container_name: ecos-proxy
+    restart: unless-stopped
+    ports:
+      - 80:80/tcp
+    environment:
+     - GATEWAY_TARGET=gateway-app:8085
+     - ECOS_REGISTRY_TARGET=jhipster-registry:8761
+     - RABBITMQ_TARGET=rabbitmq:15672
+     - MAILHOG_TARGET=mailhog:8025
+    tty: true
+    hostname: ecos-proxy
+    image: nexus.citeck.ru/ecos-proxy:1.8.0
+    stdin_open: true
+    networks:
+      - app_network
+  mailhog:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    restart: on-failure:5
+    container_name: mailhog
+    hostname: mailhog
+    expose:
+      - 8025/tcp
+    image: mailhog/mailhog
+    networks:
+      - app_network
+  gateway-app:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    image: nexus.citeck.ru/ecos-gateway:1.5.0
+    container_name: gateway-app
+    hostname: gateway-app
+    restart: on-failure:5
+    environment:
+      - JHIPSTER_REGISTRY_PASSWORD=ec0sr3g1strypasswd
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://micro-postgresql:5432/gateway
+      - JHIPSTER_SLEEP=30 # gives time for the JHipster Registry to boot before the application
+    expose:
+      - 8085/tcp
+    networks:
+      - app_network
+    depends_on:
+      - jhipster-registry
+      - micro-postgresql
+  micro-postgresql:
+    image: postgres:10.4
+    container_name: micro-postgresql
+    hostname: micro-postgresql
+    restart: on-failure:5
+    environment:
+      - POSTGRES_USER=gateway
+      - POSTGRES_PASSWORD=
+    networks:
+      - app_network
+  jhipster-registry:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    image: jhipster/jhipster-registry:v4.1.1
+    container_name: jhipster-registry
+    hostname: jhipster-registry
+    restart: on-failure:5
+    volumes:
+      - ./micro/central-server-config:/central-config
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=dev,swagger
+      - SPRING_SECURITY_USER_PASSWORD=ec0sr3g1strypasswd
+      - JHIPSTER_REGISTRY_PASSWORD=ec0sr3g1strypasswd
+      - SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_TYPE=native
+      - SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_SEARCH_LOCATIONS=file:/central-config/docker-config/
+    expose:
+      - 8761/tcp
+    networks:
+      - app_network
+  uiserv-app:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    image: nexus.citeck.ru/ecos-uiserv:1.5.0
+    container_name: uiserv-app
+    hostname: uiserv-app
+    restart: on-failure:5
+    depends_on:
+      - uiserv-postgresql
+    environment:
+      - JHIPSTER_REGISTRY_PASSWORD=ec0sr3g1strypasswd
+      - _JAVA_OPTIONS=-Xmx256m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://uiserv-postgresql:5432/uiserv
+      - JHIPSTER_SLEEP=120 # gives time for the JHipster Registry to boot before the application
+    expose:
+      - 8081/tcp
+    networks:
+      - app_network
+  uiserv-postgresql:
+    image: postgres:10.4
+    container_name: uiserv-postgresql
+    hostname: uiserv-postgresql
+    restart: on-failure:5
+    environment:
+      - POSTGRES_USER=uiserv
+      - POSTGRES_PASSWORD=
+    networks:
+      - app_network
+  ecos-history:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    image: nexus.citeck.ru/ecos-history:1.3.1
+    container_name: ecos-history
+    hostname: ecos-history
+    restart: on-failure:5
+    environment:
+      - JHIPSTER_REGISTRY_PASSWORD=ec0sr3g1strypasswd
+      - _JAVA_OPTIONS=-Xmx256m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://ecos-postgresql:5432/history_service
+      - SPRING_DATASOURCE_USERNAME=alfresco
+      - SPRING_DATASOURCE_PASSWORD=ec0sp@sswd
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/history
+      - ECOS-HISTORY_RECOVER_SOURCEFOLDER=/source
+      - ECOS-HISTORY_RECOVER_ERRORSFOLDER=/errors
+      - ECOS-HISTORY_ALFRESCO_TENANTID=community-df91
+      - ECOS-HISTORY_EVENT_HOST=rabbitmq
+      - ECOS-HISTORY_EVENT_PORT=5672
+      - ECOS-HISTORY_EVENT_USERNAME=rabbitmqadmin
+      - ECOS-HISTORY_EVENT_PASSWORD=r@bb1tmqp@sswd
+      - JHIPSTER_SLEEP=1200 # gives time for the JHipster Registry to boot before the application
+    expose:
+      - 8086/tcp
+    networks:
+      - app_network
+    depends_on:
+      - ecos
+      - ecos-postgresql
+      - rabbitmq
+  rabbitmq:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    image: "rabbitmq:3.7.18-management-alpine"
+    restart: on-failure:5
+    container_name: rabbitmq
+    hostname: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=rabbitmqadmin
+      - RABBITMQ_DEFAULT_PASS=r@bb1tmqp@sswd
+      - RABBITMQ_DEFAULT_VHOST=/
+    expose:
+      - 15672/tcp
+      - 5672/tcp
+    networks:
+      - app_network
+  notifications-app:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    image: nexus.citeck.ru/ecos-notifications:1.2.1
+    container_name: notifications-app
+    hostname: notifications-app
+    restart: on-failure:5
+    depends_on:
+      - notifications-postgresql
+    environment:
+      - JHIPSTER_REGISTRY_PASSWORD=ec0sr3g1strypasswd
+      - _JAVA_OPTIONS=-Xmx256m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://notifications-postgresql:5432/notifications
+      - JHIPSTER_SLEEP=140 # gives time for the JHipster Registry to boot before the application
+      - ECOS-NOTIFICATIONS_EVENT_HOST=rabbitmq
+      - ECOS-NOTIFICATIONS_EVENT_PORT=5672
+      - ECOS-NOTIFICATIONS_EVENT_USERNAME=rabbitmqadmin
+      - ECOS-NOTIFICATIONS_EVENT_PASSWORD=r@bb1tmqp@sswd
+      - ECOS-NOTIFICATIONS_ALFRESCO_URL=https://community.ecos24.ru
+      - ECOS-NOTIFICATIONS_ALFRESCO_AUTHENTICATION_USERNAME=notifications_micro
+      - ECOS-NOTIFICATIONS_ALFRESCO_AUTHENTICATION_PASSWORD=2yKNcMqgC8Ajqj
+    ports:
+      - 8013:8013
+    networks:
+      - app_network
+  # NOTIFICATIONS PSQL
+  notifications-postgresql:
+    image: postgres:10.4
+    container_name: notifications-postgresql
+    hostname: notifications-postgresql
+    restart: on-failure:5
+    environment:
+      - POSTGRES_USER=notifications
+    networks:
+      - app_network
+  ecos-apps:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    image: nexus.citeck.ru/ecos-apps:1.4.0
+    container_name: ecos-apps
+    hostname: ecos-apps
+    restart: on-failure:5
+    depends_on:
+      - ecosapps-postgresql
+    environment:
+      - JHIPSTER_REGISTRY_PASSWORD=ec0sr3g1strypasswd
+      - _JAVA_OPTIONS=-Xmx256m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://ecosapps-postgresql:5432/eapps
+      - JHIPSTER_SLEEP=60 # gives time for the JHipster Registry to boot before the application
+#    ports:
+#    - 8081:8081
+    networks:
+      - app_network
+  ecosapps-postgresql:
+    container_name: ecosapps-postgresql
+    hostname: ecosapps-postgresql
+    restart: on-failure:5
+    image: postgres:10.4
+    environment:
+      - POSTGRES_USER=eapps
+      - POSTGRES_PASSWORD=
+    networks:
+      - app_network
+  emodel-app:
+    container_name: emodel-app
+    image: nexus.citeck.ru/ecos-model:1.2.0
+    expose:
+      - 8094/tcp
+    environment:
+      - JHIPSTER_REGISTRY_PASSWORD=ec0sr3g1strypasswd
+      - _JAVA_OPTIONS=-Xmx256m -Xms256m
+      - SPRING_PROFILES_ACTIVE=dev,swagger
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://emodel-postgresql:5432/emodel
+      - ECOS_INIT_DELAY=120
+    networks:
+      - app_network
+    depends_on:
+      - emodel-postgresql
+  emodel-postgresql:
+    container_name: emodel-postgresql
+    image: postgres:10.4
+    environment:
+      - POSTGRES_USER=emodel
+      - POSTGRES_PASSWORD=
+    networks:
+      - app_network
