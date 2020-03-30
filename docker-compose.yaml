@@ -41,7 +41,7 @@ services:
       - app_network
     tty: true
     hostname: community
-    image: nexus.citeck.ru/ecos-community:3.17.1-5.1.f-com
+    image: nexus.citeck.ru/ecos-community:3.18.0-snapshot-5.1.f-com
     stdin_open: true
     depends_on:
       - ecos-postgresql
@@ -78,7 +78,7 @@ services:
      - MAILHOG_TARGET=mailhog:8025
     tty: true
     hostname: ecos-proxy
-    image: nexus.citeck.ru/ecos-proxy:1.11.0
+    image: nexus.citeck.ru/ecos-proxy:1.13.0-snapshot
     stdin_open: true
     networks:
       - app_network
@@ -100,7 +100,7 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
-    image: nexus.citeck.ru/ecos-gateway:1.7.2
+    image: nexus.citeck.ru/ecos-gateway:1.9.0-snapshot
     container_name: gateway-app
     hostname: gateway-app
     restart: on-failure:5
@@ -156,7 +156,7 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
-    image: nexus.citeck.ru/ecos-uiserv:1.7.2
+    image: nexus.citeck.ru/ecos-uiserv:1.9.0-snapshot
     container_name: uiserv-app
     hostname: uiserv-app
     restart: on-failure:5
@@ -189,7 +189,7 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
-    image: nexus.citeck.ru/ecos-history:1.5.2
+    image: nexus.citeck.ru/ecos-history:1.6.0
     container_name: ecos-history
     hostname: ecos-history
     restart: on-failure:5
@@ -242,7 +242,7 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
-    image: nexus.citeck.ru/ecos-notifications:1.4.2
+    image: nexus.citeck.ru/ecos-notifications:1.5.0
     container_name: notifications-app
     hostname: notifications-app
     restart: on-failure:5
@@ -282,7 +282,7 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
-    image: nexus.citeck.ru/ecos-apps:1.6.2
+    image: nexus.citeck.ru/ecos-apps:1.8.0-snapshot
     container_name: ecos-apps
     hostname: ecos-apps
     restart: on-failure:5
@@ -312,7 +312,7 @@ services:
       - app_network
   emodel-app:
     container_name: emodel-app
-    image: nexus.citeck.ru/ecos-model:1.4.2
+    image: nexus.citeck.ru/ecos-model:1.6.0-snapshot
     expose:
       - 8094/tcp
     environment:
