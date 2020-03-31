@@ -100,7 +100,7 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
-    image: nexus.citeck.ru/ecos-gateway:1.9.0-snapshot
+    image: nexus.citeck.ru/ecos-gateway:1.8.0
     container_name: gateway-app
     hostname: gateway-app
     restart: on-failure:5
@@ -156,7 +156,7 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
-    image: nexus.citeck.ru/ecos-uiserv:1.9.0-snapshot
+    image: nexus.citeck.ru/ecos-uiserv:1.9.0
     container_name: uiserv-app
     hostname: uiserv-app
     restart: on-failure:5
@@ -282,7 +282,7 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
-    image: nexus.citeck.ru/ecos-apps:1.8.0-snapshot
+    image: nexus.citeck.ru/ecos-apps:1.8.0
     container_name: ecos-apps
     hostname: ecos-apps
     restart: on-failure:5
@@ -312,7 +312,7 @@ services:
       - app_network
   emodel-app:
     container_name: emodel-app
-    image: nexus.citeck.ru/ecos-model:1.6.0-snapshot
+    image: nexus.citeck.ru/ecos-model:1.6.0
     expose:
       - 8094/tcp
     environment:
