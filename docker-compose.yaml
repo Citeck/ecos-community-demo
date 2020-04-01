@@ -312,7 +312,7 @@ services:
       - app_network
   emodel-app:
     container_name: emodel-app
-    image: nexus.citeck.ru/ecos-model:1.6.1
+    image: nexus.citeck.ru/ecos-model:1.6.2
     expose:
       - 8094/tcp
     environment:
