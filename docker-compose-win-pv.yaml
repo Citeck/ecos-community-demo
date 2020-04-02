@@ -71,7 +71,7 @@ services:
       - app_network
     tty: true
     hostname: community
-    image: nexus.citeck.ru/ecos-community:3.18.0-snapshot-5.1.f-com
+    image: nexus.citeck.ru/ecos-community:3.18.0-5.1.f-com
     stdin_open: true
     depends_on:
       - ecos-postgresql
