@@ -71,7 +71,7 @@ services:
       - app_network
     tty: true
     hostname: community
-    image: nexus.citeck.ru/ecos-community:3.18.0-5.1.f-com
+    image: nexus.citeck.ru/ecos-community:3.18.1-5.1.f-com
     stdin_open: true
     depends_on:
       - ecos-postgresql
@@ -110,7 +110,7 @@ services:
      - MAILHOG_TARGET=mailhog:8025
     tty: true
     hostname: ecos-proxy
-    image: nexus.citeck.ru/ecos-proxy:1.13.0
+    image: nexus.citeck.ru/ecos-proxy:1.13.5
     stdin_open: true
     networks:
       - app_network
