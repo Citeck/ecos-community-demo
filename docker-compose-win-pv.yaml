@@ -27,7 +27,12 @@ volumes:
     external: true
   ecos-model-postgresql-pv:
     external: true
+  ecos-eproc-mongo-pv:
+    external: true
 services:
+
+  #=== ECOS ===#
+
   ecos:
     logging:
       options:
@@ -71,7 +76,7 @@ services:
       - app_network
     tty: true
     hostname: community
-    image: nexus.citeck.ru/ecos-community:3.18.1-5.1.f-com
+    image: nexus.citeck.ru/ecos-community:3.19.0-5.1.f-com
     stdin_open: true
     depends_on:
       - ecos-postgresql
@@ -94,6 +99,9 @@ services:
       - ecos-postgresql-pv:/var/lib/postgresql/data
     networks:
       - app_network
+
+  #=== UI + PROXY ===#
+
   ecos-proxy:
     logging:
       options:
@@ -110,23 +118,13 @@ services:
      - MAILHOG_TARGET=mailhog:8025
     tty: true
     hostname: ecos-proxy
-    image: nexus.citeck.ru/ecos-proxy:1.13.5
+    image: nexus.citeck.ru/ecos-proxy:1.14.0
     stdin_open: true
     networks:
       - app_network
-  mailhog:
-    logging:
-      options:
-        max-size: "10m"
-        max-file: "5"
-    restart: on-failure:5
-    container_name: mailhog
-    hostname: mailhog
-    expose:
-      - 8025/tcp
-    image: mailhog/mailhog
-    networks:
-      - app_network
+
+  #=== GATEWAY ===#
+
   gateway-app:
     logging:
       options:
@@ -151,6 +149,9 @@ services:
     depends_on:
       - jhipster-registry
       - micro-postgresql
+
+  #=== PSQL MICRO ===#
+
   micro-postgresql:
     image: postgres:10.4
     container_name: micro-postgresql
@@ -161,6 +162,9 @@ services:
       - POSTGRES_PASSWORD=
     networks:
       - app_network
+
+  #=== ECOS REGISTRY ===#
+
   jhipster-registry:
     logging:
       options:
@@ -183,12 +187,15 @@ services:
       - 8761/tcp
     networks:
       - app_network
+
+  #=== UI SERVER ===#
+
   uiserv-app:
     logging:
       options:
         max-size: "10m"
         max-file: "5"
-    image: nexus.citeck.ru/ecos-uiserv:1.9.0
+    image: nexus.citeck.ru/ecos-uiserv:1.10.0
     container_name: uiserv-app
     hostname: uiserv-app
     restart: on-failure:5
@@ -218,6 +225,9 @@ services:
       - POSTGRES_PASSWORD=
     networks:
       - app_network
+
+  #=== ECOS HISTORY ===#
+
   ecos-history:
     logging:
       options:
@@ -253,6 +263,9 @@ services:
       - ecos
       - ecos-postgresql
       - rabbitmq
+
+  #=== RABBIT MQ ===#
+
   rabbitmq:
     logging:
       options:
@@ -273,6 +286,9 @@ services:
       - 5672/tcp
     networks:
       - app_network
+
+  #=== NOTIFICATIONS ===#
+
   notifications-app:
     logging:
       options:
@@ -305,7 +321,6 @@ services:
       - ecos-notifications-credentials-pv:/credentials
     networks:
       - app_network
-  # NOTIFICATIONS PSQL
   notifications-postgresql:
     image: postgres:10.4
     container_name: notifications-postgresql
@@ -317,12 +332,15 @@ services:
       - POSTGRES_USER=notifications
     networks:
       - app_network
+
+  #=== ECOS APPS ===#
+
   ecos-apps:
     logging:
       options:
         max-size: "10m"
         max-file: "5"
-    image: nexus.citeck.ru/ecos-apps:1.8.0
+    image: nexus.citeck.ru/ecos-apps:1.8.1
     container_name: ecos-apps
     hostname: ecos-apps
     restart: on-failure:5
@@ -336,8 +354,6 @@ services:
       - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
       - SPRING_DATASOURCE_URL=jdbc:postgresql://ecosapps-postgresql:5432/eapps
       - JHIPSTER_SLEEP=60 # gives time for the JHipster Registry to boot before the application
-#    ports:
-#    - 8081:8081
     networks:
       - app_network
   ecosapps-postgresql:
@@ -352,9 +368,12 @@ services:
       - POSTGRES_PASSWORD=
     networks:
       - app_network
+
+  #=== ECOS MODEL ===#
+
   emodel-app:
     container_name: emodel-app
-    image: nexus.citeck.ru/ecos-model:1.6.2
+    image: nexus.citeck.ru/ecos-model:1.7.0
     expose:
       - 8094/tcp
     environment:
@@ -377,5 +396,58 @@ services:
     environment:
       - POSTGRES_USER=emodel
       - POSTGRES_PASSWORD=
+    networks:
+      - app_network
+
+  #=== ECOS PROCESS ===#
+
+  eproc-app:
+    logging:
+        options:
+          max-size: "10m"
+          max-file: "5"
+    container_name: eproc-app
+    hostname: eproc-app
+    restart: on-failure:5
+    image: nexus.citeck.ru/ecos-process:1.0.1
+    ports:
+      - 8098:8098
+    environment:
+      - JHIPSTER_REGISTRY_PASSWORD=ec0sr3g1strypasswd
+      - _JAVA_OPTIONS=-Xmx256m -Xms256m
+      - SPRING_PROFILES_ACTIVE=dev,swagger
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+      - SPRING_DATA_MONGODB_URI=mongodb://eproc-mongo:27017/eproc
+      - JHIPSTER_SLEEP=120
+    depends_on:
+      - eproc-mongo
+    networks:
+      - app_network
+
+  eproc-mongo:
+    container_name: eproc-mongo
+    image: mongo:4.0.2
+    restart: on-failure:5
+    ports:
+      - "27017:27017"
+    networks:
+      - app_network
+    volumes:
+      - ecos-eproc-mongo-pv:/data/db/
+
+  #=== MAILHOG ===#
+
+  mailhog:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    restart: on-failure:5
+    container_name: mailhog
+    hostname: mailhog
+    expose:
+      - 8025/tcp
+    image: mailhog/mailhog
     networks:
       - app_network

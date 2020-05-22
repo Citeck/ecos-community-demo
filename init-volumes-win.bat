@@ -10,3 +10,4 @@ docker volume create --name=ecos-notifications-credentials-pv
 docker volume create --name=ecos-notifications-postgresql-pv
 docker volume create --name=ecos-apps-postgresql-pv
 docker volume create --name=ecos-model-postgresql-pv
+docker volume create --name=ecos-eproc-mongo-pv
