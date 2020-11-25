@@ -91,7 +91,7 @@ services:
       - MAILHOG_TARGET=mailhog:8025
     tty: true
     hostname: ecos-proxy
-    image: nexus.citeck.ru/ecos-proxy:1.20.0
+    image: nexus.citeck.ru/ecos-proxy-oidc:1.20.0
     stdin_open: true
     networks:
       - app_network
