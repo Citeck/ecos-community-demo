@@ -1,0 +1,50 @@
+version: '2.4'
+services:
+  app:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    hostname: ecos-app
+    restart: always
+    stop_grace_period: 1m
+    image: nexus.citeck.ru/ecs-community:4.0.0-5.1.f-com
+    expose:
+      - 8080/tcp
+    env_file:
+      - ./environments/ecos-app.env
+    volumes:
+      - /ecos-community-demo-data/ecos-app/license:/opt/tomcat/shared/classes/alfresco/ecos
+      - ./configs/ecos-app/alfresco_additional.properties:/tmp/alfresco/alfresco_additional.properties
+      - /ecos-community-demo-data/ecos-app/content:/content
+      - /ecos-community-demo-data/ecos-history-app/:/opt/history/data/
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/alfresco"]
+      interval: 20s
+      timeout: 10s
+      retries: 45
+    networks:
+      - app_network
+  app-db:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    hostname: ecos-postgresql-app
+    restart: always
+    stop_grace_period: 1m
+    command: ["postgres", "-c", "config_file=/var/lib/postgresql/conf/postgresql.conf"]
+    image: nexus.citeck.ru/postgresql:9.6-alpine
+    expose:
+      - 5432/tcp
+    env_file:
+      - ./environments/ecos-postgresql-app.env
+    volumes:
+      - /ecos-community-demo-data/ecos-postgresql-app:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app_network

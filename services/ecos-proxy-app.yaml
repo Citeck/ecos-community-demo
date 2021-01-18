@@ -1,0 +1,17 @@
+version: '2.4'
+services:
+  app:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    hostname: ecos-proxy-app
+    restart: always
+    stop_grace_period: 1m
+    image: nexus.citeck.ru/ecos-proxy-oidc:2.0.0
+    ports:
+      - 80:80/tcp
+    env_file:
+      - ./environments/ecos-proxy-app.env
+    networks:
+      - app_network

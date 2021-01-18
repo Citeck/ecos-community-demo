@@ -1,0 +1,15 @@
+version: '2.4'
+services:
+  app:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    hostname: mailhog-app
+    restart: always
+    stop_grace_period: 1m
+    image: nexus.citeck.ru/mailhog:latest
+    expose:
+      - 1025/tcp
+    networks:
+      - app_network

@@ -1,0 +1,21 @@
+configserver:
+  name: Docker Esos Registry
+  status: Connected to the Ecos Registry running in Docker
+
+jhipster:
+  security:
+    authentication:
+      jwt:
+        base64-secret: MmNkMDYyM2RjMTRlZTIyMzc1Y2U4ODFhODhiZjQ1YzJkYjY0NjJmNjA2ODkwYTdkOGE3MTdjYzgyYzdhYmJmYzdmN2E2NWYwMjIxZDFlZDNiN2MyZDc3ZWIwMjcxODU3NmEzNTFiM2NlZTBjYzRkNjY1ZmZlYzc2MDlmNjlkNDQ=
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:ec0sr3g1strypasswd@ecos-registry-app:8761/eureka/
+
+spring:
+  rabbitmq:
+    host: rabbitmq-app
+    port: 5672
+    username: rabbitmqadmin
+    password: ec0spa55wd

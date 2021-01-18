@@ -1,0 +1,6 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://ecos-process:ec0spa55wd@mongodb-app:27017/ecos-process
+ecos-commands:
+  concurrentCommandConsumers: 12

@@ -1,0 +1,15 @@
+ecos-history:
+  alfresco:
+    tenantid: ecos-community-demo-g7s2
+  records:
+    apps:
+      alfresco:
+        auth:
+          username: integrations
+          password: 97qiow104UIG
+
+spring:
+  datasource:
+    url: jdbc:postgresql://ecos-microservices-postgresql-app:5432/ecos_history
+    username: history
+    password: ec0spa55wd
