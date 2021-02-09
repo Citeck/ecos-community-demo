@@ -14,10 +14,10 @@ services:
     env_file:
       - ./environments/ecos-app.env
     volumes:
-      - /ecos-community-demo-data/ecos-app/license:/opt/tomcat/shared/classes/alfresco/ecos
+      - /private/ecos-community-demo-data/ecos-app/license:/opt/tomcat/shared/classes/alfresco/ecos
       - ./configs/ecos-app/alfresco_additional.properties:/tmp/alfresco/alfresco_additional.properties
-      - /ecos-community-demo-data/ecos-app/content:/content
-      - /ecos-community-demo-data/ecos-history-app/:/opt/history/data/
+      - /private/ecos-community-demo-data/ecos-app/content:/content
+      - /private/ecos-community-demo-data/ecos-history-app/:/opt/history/data/
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/alfresco"]
       interval: 20s
@@ -40,7 +40,7 @@ services:
     env_file:
       - ./environments/ecos-postgresql-app.env
     volumes:
-      - /ecos-community-demo-data/ecos-postgresql-app:/var/lib/postgresql/data
+      - /private/ecos-community-demo-data/ecos-postgresql-app:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s

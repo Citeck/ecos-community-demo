@@ -14,8 +14,8 @@ services:
     env_file:
       - ./environments/ecos-history-app.env
     volumes:
-      - /ecos-community-demo-data/ecos-history-app/source:/source
-      - /ecos-community-demo-data/ecos-history-app/errors:/errors
+      - /private/ecos-community-demo-data/ecos-history-app/source:/source
+      - /private/ecos-community-demo-data/ecos-history-app/errors:/errors
     healthcheck:
       test: ["CMD", "wget", "-q", "--spider", "http://localhost:8086/management/health"]
       interval: 20s
