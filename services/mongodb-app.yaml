@@ -14,7 +14,7 @@ services:
     env_file:
       - ./environments/mongodb-app.env
     volumes:
-      - /private/ecos-community-demo-data/mongodb-app:/data/db/
+      - ./ecos-community-demo-data/mongodb-app:/data/db/
     healthcheck:
       test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
       interval: 20s

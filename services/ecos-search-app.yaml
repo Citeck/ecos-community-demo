@@ -15,7 +15,7 @@ services:
     env_file:
       - ./environments/ecos-search-app.env
     volumes:
-      - /private/ecos-community-demo-data/ecos-search-app:/opt/solr4_data
+      - ./ecos-community-demo-data/ecos-search-app:/opt/solr4_data
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/solr4"]
       interval: 10s
