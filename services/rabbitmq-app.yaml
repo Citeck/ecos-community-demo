@@ -15,7 +15,7 @@ services:
     env_file:
       - ./environments/rabbitmq-app.env
     volumes:
-      - ./ecos-community-demo-data/rabbitmq-app:/var/lib/rabbitmq
+      - /opt/ecos-community-demo-data/rabbitmq-app:/var/lib/rabbitmq
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
       interval: 30s
