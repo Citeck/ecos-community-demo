@@ -43,6 +43,13 @@ services:
     extends:
       file: ./services/rabbitmq-app.yaml
       service: app
+  ecos-identity-app:
+    extends:
+      file: ./services/ecos-identity-app.yaml
+      service: app
+    depends_on:
+      ecos-microservices-postgresql-app:
+        condition: service_healthy
   ecos-process-app:
     extends:
       file: ./services/ecos-process-app.yaml

@@ -1,4 +1,7 @@
 spring:
+  mail:
+    host: mailhog-app
+    port: 1025
   datasource:
     url: jdbc:postgresql://ecos-microservices-postgresql-app:5432/ecos_notifications
     username: notifications

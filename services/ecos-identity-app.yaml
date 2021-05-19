@@ -1,0 +1,20 @@
+version: '2.4'
+services:
+  app:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    hostname: ecos-identity-app
+    restart: always
+    stop_grace_period: 1m
+    image: nexus.citeck.ru/keycloak:11.0.0
+    expose:
+      - 8080/tcp
+      - 8443/tcp
+    env_file:
+      - ./environments/ecos-identity-app.env
+    volumes:
+     - ./configs/ecos-identity-app/:/import/
+    networks:
+      - app_network
