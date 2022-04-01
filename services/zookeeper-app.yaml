@@ -1,0 +1,20 @@
+version: '2.4'
+services:
+  app:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    hostname: zookeeper-app
+    restart: always
+    stop_grace_period: 1m
+    image: nexus.citeck.ru/zookeeper:3.6.1
+    expose:
+      - 2181/tcp
+    env_file:
+      - ./environments/zookeeper-app.env
+    volumes:
+      - /opt/ecos-community-demo-data/zookeeper-app/data:/data
+      - /opt/ecos-community-demo-data/zookeeper-app/datalog:/datalog
+    networks:
+      - app_network

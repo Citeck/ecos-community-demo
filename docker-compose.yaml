@@ -35,6 +35,10 @@ services:
     depends_on:
       ecos-app:
         condition: service_healthy
+  zookeeper-app:
+    extends:
+      file: ./services/zookeeper-app.yaml
+      service: app
   mailhog-app:
     extends:
       file: ./services/mailhog-app.yaml
