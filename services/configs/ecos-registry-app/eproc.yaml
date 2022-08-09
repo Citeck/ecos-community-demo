@@ -2,5 +2,16 @@ spring:
   data:
     mongodb:
       uri: mongodb://ecos-process:ec0spa55wd@mongodb-app:27017/ecos-process
+ecos:
+  webapp:
+    dataSources:
+      eproc:
+        url: jdbc:postgresql://ecos-microservices-postgresql-app:5432/ecos_process
+        username: process
+        password: processpassword
+      camunda:
+        url: jdbc:postgresql://ecos-microservices-postgresql-app:5432/ecos_camunda
+        username: camunda
+        password: camundapassword
 ecos-commands:
   concurrentCommandConsumers: 12

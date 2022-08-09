@@ -35,6 +35,8 @@ services:
     depends_on:
       ecos-app:
         condition: service_healthy
+      ecos-gateway-app:
+        condition: service_healthy
   zookeeper-app:
     extends:
       file: ./services/zookeeper-app.yaml
@@ -80,6 +82,14 @@ services:
         condition: service_healthy
       rabbitmq-app:
         condition: service_healthy
+  ecos-order-pass-ecos-apps:
+    extends:
+      file: ./services/ecos-apps-app.yaml
+      service: ecos-order-pass-ecos-apps
+  ecos-meetings-ecos-apps:
+    extends:
+      file: ./services/ecos-apps-app.yaml
+      service: ecos-meetings-ecos-apps
   ecos-apps-app:
     extends:
       file: ./services/ecos-apps-app.yaml
