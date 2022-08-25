@@ -18,4 +18,4 @@ mirror:
     - git remote add mirror $TARGET_REPO
     - git remote show mirror
     - git fetch --unshallow origin
-    - git push --all origin
+    - git push $TARGET_REPO --all origin
