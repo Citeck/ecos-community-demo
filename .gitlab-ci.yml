@@ -19,3 +19,4 @@ mirror:
     - git remote show mirror
     - git fetch --unshallow origin
     - git push $TARGET_REPO '*:*'
+    - git push $TARGET_REPO --all
