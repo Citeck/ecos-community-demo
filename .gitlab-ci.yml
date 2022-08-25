@@ -18,5 +18,5 @@ mirror:
     - git remote add mirror $TARGET_REPO
     - git remote show mirror
     - git fetch --unshallow origin
-    - git push $TARGET_REPO '*:*'
+    - git branch -r | grep -v '\->' | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
     - git push $TARGET_REPO --all
