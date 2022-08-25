@@ -18,4 +18,4 @@ mirror:
     - git remote add mirror $TARGET_REPO
     - git remote show mirror
     - git fetch --unshallow origin
-    - git push -f --progress mirror HEAD:release/*
+    - git push -f --progress mirror release/*
