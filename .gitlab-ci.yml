@@ -6,7 +6,7 @@ mirror:
     - shell
   stage: mirror
   variables:
-    TARGET_REPO: "https://github.com/Citeck/ecos-community-demo.git"
+    TARGET_REPO: "git@github.com:Citeck/ecos-community-demo.git"
     GIT_STRATEGY: clone
   cache: {}
   script:
