@@ -3,23 +3,6 @@ networks:
   app_network:
     driver: bridge
 services:
-  ecos-app:
-    extends:
-      file: ./services/ecos-app.yaml
-      service: app
-    depends_on:
-      ecos-postgresql-app:
-        condition: service_healthy
-      ecos-model-app:
-        condition: service_healthy
-      ecos-search-app:
-        condition: service_healthy
-      rabbitmq-app:
-        condition: service_healthy
-  ecos-postgresql-app:
-    extends:
-      file: ./services/ecos-app.yaml
-      service: app-db
   ecos-registry-app:
     extends:
       file: ./services/ecos-registry-app.yaml
@@ -33,8 +16,6 @@ services:
       file: ./services/ecos-proxy-app.yaml
       service: app
     depends_on:
-      ecos-app:
-        condition: service_healthy
       ecos-gateway-app:
         condition: service_healthy
   zookeeper-app:
