@@ -7,10 +7,6 @@ services:
     extends:
       file: ./services/ecos-registry-app.yaml
       service: app
-  ecos-search-app:
-    extends:
-      file: ./services/ecos-search-app.yaml
-      service: app
   ecos-proxy-app:
     extends:
       file: ./services/ecos-proxy-app.yaml
