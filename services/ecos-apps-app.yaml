@@ -8,7 +8,7 @@ services:
     hostname: ecos-apps-app
     restart: always
     stop_grace_period: 1m
-    image: nexus.citeck.ru/ecos-apps:2.6.0
+    image: nexus.citeck.ru/ecos-apps:2.7.0
     volumes:
       - /opt/ecos-community-demo-data/ecos-apps:/run/ecos-artifacts/app/ecosapp
     expose:
@@ -34,4 +34,3 @@ services:
       - ECOS_APPS_TARGET_DIR=/run/ecos-apps-target
     volumes:
       - /opt/ecos-community-demo-data/ecos-apps:/run/ecos-apps-target
-  
