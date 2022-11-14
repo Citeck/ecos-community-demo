@@ -10,7 +10,7 @@ services:
     stop_grace_period: 1m
     image: nexus.citeck.ru/ecos-apps:2.7.0
     volumes:
-      - /opt/ecos-community-demo-data/ecos-apps:/run/ecos-artifacts/app/ecosapp
+      - ./ecos-community-demo-data/ecos-apps:/run/ecos-artifacts/app/ecosapp
     expose:
       - 8089/tcp
     env_file:
@@ -27,10 +27,10 @@ services:
     environment:
       - ECOS_APPS_TARGET_DIR=/run/ecos-apps-target
     volumes:
-      - /opt/ecos-community-demo-data/ecos-apps:/run/ecos-apps-target
+      - ./ecos-community-demo-data/ecos-apps:/run/ecos-apps-target
   ecos-meetings-ecos-apps:
     image: nexus.citeck.ru/ecos-meetings:1.0.0
     environment:
       - ECOS_APPS_TARGET_DIR=/run/ecos-apps-target
     volumes:
-      - /opt/ecos-community-demo-data/ecos-apps:/run/ecos-apps-target
+      - ./ecos-community-demo-data/ecos-apps:/run/ecos-apps-target

@@ -14,7 +14,7 @@ services:
     env_file:
       - ./environments/zookeeper-app.env
     volumes:
-      - /opt/ecos-community-demo-data/zookeeper-app/data:/data
-      - /opt/ecos-community-demo-data/zookeeper-app/datalog:/datalog
+      - ./ecos-community-demo-data/zookeeper-app/data:/data
+      - ./ecos-community-demo-data/zookeeper-app/datalog:/datalog
     networks:
       - app_network
