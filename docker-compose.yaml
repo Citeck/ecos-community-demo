@@ -67,6 +67,10 @@ services:
     extends:
       file: ./services/ecos-apps-app.yaml
       service: ecos-meetings-ecos-apps
+  ecos-common-data-list-ecos-apps:
+    extends:
+      file: ./services/ecos-apps-app.yaml
+      service: ecos-common-data-list-ecos-apps
   ecos-apps-app:
     extends:
       file: ./services/ecos-apps-app.yaml
