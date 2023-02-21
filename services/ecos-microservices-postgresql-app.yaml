@@ -9,7 +9,7 @@ services:
     restart: always
     stop_grace_period: 1m
     command: ["postgres", "-c", "config_file=/var/lib/postgresql/conf/postgresql.conf"]
-    image: nexus.citeck.ru/postgresql:msvc-latest
+    image: nexus.citeck.ru/postgresql:12.7-1
     expose:
       - 5432/tcp
     env_file:
