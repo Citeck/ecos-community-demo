@@ -8,7 +8,7 @@ services:
     hostname: ecos-notifications-app
     restart: always
     stop_grace_period: 1m
-    image: nexus.citeck.ru/ecos-notifications:2.13.0
+    image: nexus.citeck.ru/ecos-notifications:2.14.0
     expose:
       - 8013/tcp
     env_file:
