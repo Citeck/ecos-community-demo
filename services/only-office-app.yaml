@@ -1,0 +1,21 @@
+version: '2.4'
+services:
+  app:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    hostname: only-office-app
+    restart: always
+    stop_grace_period: 1m
+    image: nexus.citeck.ru/onlyoffice/documentserver:latest
+    expose:
+      - 80/tcp
+      - 443/tcp
+    volumes:
+      - ./ecos-community-demo-data/only-office-app/document_data:/var/www/onlyoffice/Data
+      - ./ecos-community-demo-data/only-office-app/document_log:/var/log/onlyoffice
+      - ./ecos-community-demo-data/only-office-app/document_fonts:/usr/share/fonts/truetype/custom
+      - ./ecos-community-demo-data/only-office-app/document_forgotten:/var/lib/onlyoffice/documentserver/App_Data/cache/files/forgotten
+    networks:
+      - app_network

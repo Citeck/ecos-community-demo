@@ -40,3 +40,9 @@ services:
       - ECOS_APPS_TARGET_DIR=/run/ecos-apps-target
     volumes:
       - ./ecos-community-demo-data/ecos-apps:/run/ecos-apps-target
+  ecos-assignments-ecos-apps:
+    image: nexus.citeck.ru/ecos-assignments:1.0.0
+    environment:
+      - ECOS_APPS_TARGET_DIR=/run/ecos-apps-target
+    volumes:
+      - ./ecos-community-demo-data/ecos-apps:/run/ecos-apps-target

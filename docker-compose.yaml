@@ -3,6 +3,10 @@ networks:
   app_network:
     driver: bridge
 services:
+  only-office-app:
+    extends:
+      file: ./services/only-office-app.yaml
+      service: app
   ecos-registry-app:
     extends:
       file: ./services/ecos-registry-app.yaml
@@ -71,6 +75,10 @@ services:
     extends:
       file: ./services/ecos-apps-app.yaml
       service: ecos-common-data-list-ecos-apps
+  ecos-assignments-ecos-apps:
+    extends:
+      file: ./services/ecos-apps-app.yaml
+      service: ecos-assignments-ecos-apps
   ecos-apps-app:
     extends:
       file: ./services/ecos-apps-app.yaml
