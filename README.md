@@ -94,7 +94,7 @@ docker-compose down --volumes
 
 ## Additional Resources
 
-For more information about Citeck ECOS and its features, please refer to the official documentation: [Citeck ECOS Documentation](https://citeck.com/docs/)
+For more information about Citeck ECOS and its features, please refer to the official documentation: [Citeck ECOS Documentation](https://citeck-ecos.readthedocs.io/ru/latest/index.html)
 
 ## License
 
