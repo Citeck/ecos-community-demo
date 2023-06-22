@@ -79,6 +79,18 @@ services:
     extends:
       file: ./services/ecos-apps-app.yaml
       service: ecos-assignments-ecos-apps
+  ecos-crm-ecos-apps:
+    extends:
+      file: ./services/ecos-apps-app.yaml
+      service: ecos-crm-ecos-apps
+  ecos-offers-ecos-apps:
+    extends:
+      file: ./services/ecos-apps-app.yaml
+      service: ecos-offers-ecos-apps
+  ecos-time-tracking-ecos-apps:
+    extends:
+      file: ./services/ecos-apps-app.yaml
+      service: ecos-time-tracking-ecos-apps
   ecos-apps-app:
     extends:
       file: ./services/ecos-apps-app.yaml
