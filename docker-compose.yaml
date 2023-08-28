@@ -91,6 +91,10 @@ services:
     extends:
       file: ./services/ecos-apps-app.yaml
       service: ecos-time-tracking-ecos-apps
+  ecos-aro-ecos-apps:
+    extends:
+      file: ./services/ecos-apps-app.yaml
+      service: ecos-aro-ecos-apps
   ecos-apps-app:
     extends:
       file: ./services/ecos-apps-app.yaml
