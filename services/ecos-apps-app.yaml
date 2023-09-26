@@ -35,7 +35,7 @@ services:
     volumes:
       - ./ecos-community-demo-data/ecos-apps:/run/ecos-apps-target
   ecos-common-data-list-ecos-apps:
-    image: nexus.citeck.ru/ecos-common-data-list:1.4.3
+    image: nexus.citeck.ru/ecos-common-data-list:1.5.0
     environment:
       - ECOS_APPS_TARGET_DIR=/run/ecos-apps-target
     volumes:
