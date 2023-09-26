@@ -95,6 +95,14 @@ services:
     extends:
       file: ./services/ecos-apps-app.yaml
       service: ecos-aro-ecos-apps
+  ecos-correspondence-ecos-apps:
+    extends:
+      file: ./services/ecos-apps-app.yaml
+      service: ecos-correspondence-ecos-apps
+  ecos-contracts-ecos-apps:
+    extends:
+      file: ./services/ecos-apps-app.yaml
+      service: ecos-contracts-ecos-apps
   ecos-apps-app:
     extends:
       file: ./services/ecos-apps-app.yaml
