@@ -1,7 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://ecos-process:ec0spa55wd@mongodb-app:27017/ecos-process
+      uri: mongodb://ecos-process:ecos-process-password@mongodb-app:27017/ecos-process
 ecos:
   webapp:
     dataSources:

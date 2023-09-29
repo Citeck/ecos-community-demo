@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://ecos-microservices-postgresql-app:5432/ecos_gateway
     username: gateway
-    password: ec0spa55wd
+    password: gatewaypassword
   http:
     multipart:
       max-file-size: 50MB
