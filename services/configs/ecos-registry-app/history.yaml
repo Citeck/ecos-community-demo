@@ -12,4 +12,4 @@ spring:
   datasource:
     url: jdbc:postgresql://ecos-microservices-postgresql-app:5432/ecos_history
     username: history
-    password: ec0spa55wd
+    password: historypassword

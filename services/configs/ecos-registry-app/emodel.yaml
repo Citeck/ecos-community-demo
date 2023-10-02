@@ -2,4 +2,4 @@ spring:
   datasource:
     url: jdbc:postgresql://ecos-microservices-postgresql-app:5432/ecos_model
     username: model
-    password: ec0spa55wd
+    password: modelpassword

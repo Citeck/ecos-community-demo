@@ -8,13 +8,12 @@ services:
     hostname: zookeeper-app
     restart: always
     stop_grace_period: 1m
-    image: nexus.citeck.ru/zookeeper:3.6.1
+    image: nexus.citeck.ru/zookeeper:3.8.2-debian-11-r12
     expose:
       - 2181/tcp
     env_file:
       - ./environments/zookeeper-app.env
     volumes:
-      - ./ecos-community-demo-data/zookeeper-app/data:/data
-      - ./ecos-community-demo-data/zookeeper-app/datalog:/datalog
+      - ./configs/zookeeper-app/zookeeper/data/:/bitnami/zookeeper/data/
     networks:
       - app_network

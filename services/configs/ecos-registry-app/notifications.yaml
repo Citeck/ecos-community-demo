@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:postgresql://ecos-microservices-postgresql-app:5432/ecos_notifications
     username: notifications
-    password: ec0spa55wd
+    password: notificationspassword
 ecos-notifications:
   alfresco:
     url: https://ecos-community-demo

@@ -4,6 +4,9 @@ networks:
     driver: bridge
 services:
   only-office-app:
+    depends_on:
+      ecos-microservices-postgresql-app:
+        condition: service_healthy
     extends:
       file: ./services/only-office-app.yaml
       service: app
@@ -42,6 +45,8 @@ services:
       file: ./services/ecos-process-app.yaml
       service: app
     depends_on:
+      ecos-microservices-postgresql-app:
+        condition: service_healthy
       mongodb-app:
         condition: service_healthy
       ecos-registry-app:
@@ -167,6 +172,8 @@ services:
       file: ./services/ecos-ecom.yaml
       service: app
     depends_on:
+      ecos-microservices-postgresql-app:
+        condition: service_healthy
       ecos-registry-app:
         condition: service_healthy
       rabbitmq-app:
@@ -176,6 +183,8 @@ services:
       file: ./services/ecos-service-desk.yaml
       service: app
     depends_on:
+      ecos-microservices-postgresql-app:
+        condition: service_healthy
       ecos-registry-app:
         condition: service_healthy
       rabbitmq-app:

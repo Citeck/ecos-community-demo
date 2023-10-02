@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://ecos-microservices-postgresql-app:5432/ecos_uiserv
     username: uiserv
-    password: ec0spa55wd
+    password: uiservpassword
 config:
   language-switcher-enabled:
     value: true

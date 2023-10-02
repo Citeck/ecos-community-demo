@@ -16,9 +16,11 @@ services:
       - ./environments/ecos-microservices-postgresql-app.env
     volumes:
       - ./ecos-community-demo-data/ecos-microservices-postgresql-app:/var/lib/postgresql/data
+      - ./configs/ecos-microservices-postgresql-app/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
+      - ./configs/ecos-microservices-postgresql-app/dump_demo.sql:/tmp/dump_demo.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
+      interval: 120s
       timeout: 5s
       retries: 5
     networks:
