@@ -48,6 +48,8 @@ To access the ECOS Community Demo, you need to add an entry to your system's `.h
 git clone https://github.com/citeck/ecos-community-demo.git
 ```
 
+**Note**: ecos-community-demo comes with pre-filled demo data. To disable this setting before deploying the stand go to the `\services\environments folder` and in files `ecos-microservices-postgresql.env` and `mongodb-app.env` change setting `WITH_DEMO_DATA` from **true** to **false**.
+
 3. Navigate to the cloned repository:
 
 ```bash

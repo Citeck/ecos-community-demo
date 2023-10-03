@@ -2,6 +2,21 @@
 
 # ECOS Changelog
 
+## [4.7.0] - 2023-09-26
+
+### Added
+- Created new readable process model for module "Offers" 
+- Renamed tasks buttons in module "Offers" 
+- Added option "Save as draft" in BPMN editor
+- Module "ORD" added
+- Attributes "Registration number" and "Date received", "Initiator" are added in module "Correspondence. Income documents"
+- Card content is closed for editing in module "Correspondence. Income documents"
+
+### Fixed
+- Error "Records can't be mutated until schema version will be fully migrated. Current schema version: 4 Expected schema version: 5"
+- No history entry in Events history after creating an assignments with this document
+- Bugs in module "Correspondence. Income documents"
+
 ## [4.6.0] - 2023-08-25
 
 ### Added
