@@ -66,5 +66,3 @@ else
     });
 EOF
 fi
-
-exec "$@"
