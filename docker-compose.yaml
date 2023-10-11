@@ -3,13 +3,13 @@ networks:
   app_network:
     driver: bridge
 services:
-  only-office-app:
-    depends_on:
-      ecos-microservices-postgresql-app:
-        condition: service_healthy
-    extends:
-      file: ./services/only-office-app.yaml
-      service: app
+  # only-office-app:
+  #   depends_on:
+  #     ecos-microservices-postgresql-app:
+  #       condition: service_healthy
+  #   extends:
+  #     file: ./services/only-office-app.yaml
+  #     service: app
   ecos-registry-app:
     extends:
       file: ./services/ecos-registry-app.yaml

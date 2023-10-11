@@ -13,13 +13,14 @@ services:
       - 27017/tcp
     env_file:
       - ./environments/mongodb-app.env
+      - ./environments/demo_data.env
     volumes:
       - ./ecos-community-demo-data/mongodb-app:/data/db/
-      - ./configs/mongodb-app/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
-      - ./configs/mongodb-app/mongo:/tmp/mongo
+      - ./backups/mongodb-app/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
+      - ./backups/mongodb-app/mongo:/tmp/mongo
     healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
-      interval: 60s
+      test: ["CMD", "mongo", "--eval", "db.getMongo().getDBNames().indexOf('ecos-process') > -1"]
+      interval: 10s
       timeout: 20s
       retries: 6
     networks:
