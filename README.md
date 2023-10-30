@@ -101,3 +101,7 @@ For more information about Citeck ECOS and its features, please refer to the off
 ## License
 
 This Docker Compose setup is licensed under the [MIT License](LICENSE). Please note that Citeck ECOS has its own licensing terms and conditions, which you should review separately.
+
+## Warning 
+
+Please do not try to download the repository as an archive, download the repository using git clone
