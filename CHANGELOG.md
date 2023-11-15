@@ -2,6 +2,28 @@
 
 # ECOS Changelog
 
+## [4.8.0] - 2023-11-17
+
+### Added
+
+- Added journal "Tasks of subordinates" where manager can see subordinates' tasks
+- BPMN workflow for nested data type
+- Added linters for BPMN diagrams than check your BPMN diagrams for common BPMN and special ECOS issues.
+- Updated default curreny data list
+- Added permissions for BPMN and data types
+- OpenOffice component to preview documents
+
+### Fixed
+
+- User synchronization error
+- Group action "Download as Zip"
+- Lag when loading BPMN editor
+- Error on action to send to introduction at module "ORD"
+- Multiple choice ecos-select values are stored
+- Permission matrix for module "Offers"
+- Missing actions in journals at modules "Correspondence. Income documents", "Contracts", "ORD"
+- OpenOffice component to preview documents
+
 ## [4.7.0] - 2023-09-26
 
 ### Added
