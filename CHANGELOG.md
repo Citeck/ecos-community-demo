@@ -7,11 +7,11 @@
 ### Added
 
 - Added journal "Tasks of subordinates" where manager can see subordinates' tasks
-- BPMN workflow for nested data type
-- Added linters for BPMN diagrams than check your BPMN diagrams for common BPMN and special ECOS issues.
+- Realized BPMN workflow for nested data type
+- Added linters for BPMN diagrams than check BPMN diagrams for common BPMN and special ECOS issues.
 - Updated default curreny data list
 - Added permissions for BPMN and data types
-- OpenOffice component to preview documents
+- Added OpenOffice component to preview documents
 
 ### Fixed
 
