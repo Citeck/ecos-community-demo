@@ -12,6 +12,7 @@
 - Updated default curreny data list
 - Added permissions for BPMN and data types
 - Added OpenOffice component to preview documents
+- Added agregation count column at journal settings
 
 ### Fixed
 
