@@ -8,7 +8,7 @@ services:
     hostname: ecos-apps-app
     restart: always
     stop_grace_period: 1m
-    image: nexus.citeck.ru/ecos-apps:2.15.0
+    image: nexus.citeck.ru/ecos-apps:2.16.0
     volumes:
       - ./ecos-community-demo-data/ecos-apps:/run/ecos-artifacts/app/ecosapp
     expose:
@@ -47,31 +47,31 @@ services:
     volumes:
       - ./ecos-community-demo-data/ecos-apps:/run/ecos-apps-target
   ecos-time-tracking-ecos-apps:
-    image: nexus.citeck.ru/ecos-time-tracking:1.0.0
+    image: nexus.citeck.ru/ecos-time-tracking:1.1.2
     environment:
       - ECOS_APPS_TARGET_DIR=/run/ecos-apps-target
     volumes:
       - ./ecos-community-demo-data/ecos-apps:/run/ecos-apps-target
   ecos-offers-ecos-apps:
-    image: nexus.citeck.ru/ecos-offers:1.4.1
+    image: nexus.citeck.ru/ecos-offers:1.6.0
     environment:
       - ECOS_APPS_TARGET_DIR=/run/ecos-apps-target
     volumes:
       - ./ecos-community-demo-data/ecos-apps:/run/ecos-apps-target
   ecos-crm-ecos-apps:
-    image: nexus.citeck.ru/ecos-crm:1.0.0
+    image: nexus.citeck.ru/ecos-crm:1.1.0
     environment:
       - ECOS_APPS_TARGET_DIR=/run/ecos-apps-target
     volumes:
       - ./ecos-community-demo-data/ecos-apps:/run/ecos-apps-target
   ecos-aro-ecos-apps:
-    image: nexus.citeck.ru/ecos-aro:1.1.0
+    image: nexus.citeck.ru/ecos-aro:1.2.0
     environment:
       - ECOS_APPS_TARGET_DIR=/run/ecos-apps-target
     volumes:
       - ./ecos-community-demo-data/ecos-apps:/run/ecos-apps-target
   ecos-correspondence-ecos-apps:
-    image: nexus.citeck.ru/ecos-correspondence:1.1.0
+    image: nexus.citeck.ru/ecos-correspondence:1.2.0
     environment:
       - ECOS_APPS_TARGET_DIR=/run/ecos-apps-target
     volumes:
