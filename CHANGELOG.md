@@ -2,6 +2,26 @@
 
 # ECOS Changelog
 
+## [4.9.0] - 2024-02-05
+
+### Added
+
+- Ability to change and save column width in a table view.
+- Ability to load source associations for records from other database.
+- Developed external attributes mixins.
+- Defined formats for the Print action.
+- Entities are copied with child associations.
+- Ability to enter a condition for the "Color" formatter.
+- Added a new "Duration" formatter. When formatter is enabled, the duration will be transformed into hours, like 2d 3h 30m = 51h 30m
+- Added Work schedule and production calendar, which is a functionality for accounting for non-working days and holidays.
+- Ability to get in the action a link to download a file (using config: implSourceId) is added to the card object.
+
+### Fixed
+
+- Attribute with storage type "None" is not computed.
+- Journal grouping now work for groupable assoc attribute.
+
+
 ## [4.8.0] - 2023-12-07
 
 ### Added
