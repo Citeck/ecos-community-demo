@@ -2,6 +2,23 @@
 
 # ECOS Changelog
 
+## [2024.4] - 2024-04-15
+
+### Added
+
+- Journal multiple agregation by filter: the ability to add several columns with specified names with different filter settings.
+- "History Configuration" aspect to configurate attributes which changes won't be recorded to history journal and widget history.
+- Improved Orgstructure: ability to add existing groups or users to a group.
+- Improved transaction system.
+
+### Fixed
+
+- Missed business rule task on BPMN elements.
+- "Read timed out" error during camunda process.
+- filter with predicate "Not equal".
+- Uploading 2 or more documents to the card in the Module "Contracts".
+- Synchronization with document widget in the Module "Contracts".
+
 ## [4.9.0] - 2024-02-15
 
 ### Added
