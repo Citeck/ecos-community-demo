@@ -2,6 +2,28 @@
 
 # ECOS Changelog
 
+## [2024.7] - 2024-07-08
+
+### Added
+
+- History-config aspect to enable configuration to write properties to history (widget and journal).
+- Updated currency data list.
+- Multiple select from orgstructura for journal templates.
+- BPMN process setting "Auto delete process". When deleting an object of the specified type, the process will be deleted automatically.
+
+### Fixed
+
+- Empty orgstructure component when selecting users.
+- No user name in the Comment widget.
+- Filtering project users when mentioning in comments
+- Duplicateted content in the database.
+- Duplicated 'group-action-change-owner' configuration within group actions.
+- Error while process start: Process definition with id not found.
+- User form editing if a date of birth field is filled.
+- Contracts module. When document is generated from template business process stays in draft status
+- Document types' names are not displayed in the Documents tab of the dashboard
+- Error 'Source is not found with id 'type' and type 'ru.citeck.ecos.records2.source.dao.MutableRecordsDao' when saving a data type.
+
 ## [2024.4] - 2024-04-19
 
 ### Added
