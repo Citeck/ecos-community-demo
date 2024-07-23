@@ -8,7 +8,7 @@ services:
     hostname: ecos-uiserv-app
     restart: always
     stop_grace_period: 1m
-    image: nexus.citeck.ru/ecos-uiserv:2.24.0
+    image: nexus.citeck.ru/ecos-uiserv:2.25.0
     expose:
       - 8081/tcp
     env_file:
