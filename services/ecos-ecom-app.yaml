@@ -2,7 +2,7 @@ version: '2.4'
 services:
   app:
     expose:
-      - 8097/tcp
+      - 8686/tcp
     logging:
       options:
         max-size: "10m"
@@ -10,8 +10,13 @@ services:
     hostname: ecos-ecom-app
     restart: always
     stop_grace_period: 1m
-    image: nexus.citeck.ru/ecos-ecom:1.7.0
+    image: nexus.citeck.ru/ecos-ecom:1.8.0
     env_file:
       - ./environments/ecos-ecom-app.env
+    healthcheck:
+      test: [ "CMD", "wget", "-q", "--spider", "http://localhost:8686/management/health" ]
+      interval: 20s
+      timeout: 20s
+      retries: 36
     networks:
       - app_network

@@ -127,7 +127,7 @@
 - Association search does not work in the main log search
 - Offers: kanban board should display only candidates on the request
 - The grouping in the journal does not work
-- Orgstructure: alfresco user base does not open
+- orgstructure: alfresco user base does not open
 - Tasks statistics: no data are displayed in the widget
 - DMN/BPMN: no localization when uploading the model
 - Error while loading document

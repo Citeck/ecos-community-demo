@@ -5,16 +5,16 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
-    hostname: ecos-model-app
+    hostname: ecos-transformations-app
     restart: always
     stop_grace_period: 1m
-    image: nexus.citeck.ru/ecos-model:2.28.1
+    image: nexus.citeck.ru/ecos-transformations:1.11.0
     expose:
-      - 8094/tcp
+      - 8098/tcp
     env_file:
-      - ./environments/ecos-model-app.env
+      - ./environments/ecos-transformations-app.env
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8094/management/health"]
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8087/management/health"]
       interval: 20s
       timeout: 20s
       retries: 36

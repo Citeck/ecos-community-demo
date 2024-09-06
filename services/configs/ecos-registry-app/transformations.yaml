@@ -1,0 +1,4 @@
+ecos:
+  integrations:
+    onlyoffice:
+      host: only-office-app

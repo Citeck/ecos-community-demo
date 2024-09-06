@@ -3,3 +3,7 @@ spring:
     url: jdbc:postgresql://ecos-microservices-postgresql-app:5432/ecos_model
     username: model
     password: modelpassword
+ecos:
+  integrations:
+    onlyoffice:
+      host: only-office-app
