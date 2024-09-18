@@ -2,6 +2,30 @@
 
 # ECOS Changelog
 
+## [2024.8] - 2024-09-13
+
+### Added
+
+- Updated microservices and libraries: java 21, java spring boot 3.3.2, spring 6.1.11, kotlin 2.0.0, camunda 7.21.0, all other dependencies up to the latest stable versions
+- Script engine changed to GraalVM JS
+- Module "Vacations"
+- Kanban board. New column setting "Hide items older than"
+- System attribute _statusModified, that stores status' last change date
+- Updated document library UI: folder tree view by default, file dashboard, actions
+- Filter on document attributes for BPMN tasks
+- Orgstructure. Search by additional field.
+
+### Fixed
+
+- BPMN. Error send task when saving to draft model 
+- Search by expressions in journal
+- Redundant fields in form builder
+- Displayed incorrectly total sum in columns
+- Incorrectly calculated SLA2 if SLA2 expired
+- Service Desk. Incorrect error message
+- Orgstructure. Incorrect search
+
+
 ## [2024.7] - 2024-07-08
 
 ### Added
