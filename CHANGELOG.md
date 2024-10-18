@@ -2,6 +2,19 @@
 
 # ECOS Changelog
 
+## [2024.8.2] - 2024-10-18
+
+### Fixed
+
+- Journal settings. Empty filter list
+- Journal settings. Error when opening grouped data
+- Journal settings. Drop-down list does not open in the journal's columns setup
+- Journal template. Changed column order is not saved in the template
+- Journal template. Journal templates are without scrolling
+- Journal. Export from journal dosn't work with time-interval filter
+- Active tasks. Incorrect pagination
+- Orstructure. Double scrolls
+
 ## [2024.8] - 2024-09-29
 
 ### Added
