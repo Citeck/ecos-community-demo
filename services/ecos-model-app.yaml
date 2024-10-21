@@ -8,7 +8,7 @@ services:
     hostname: ecos-model-app
     restart: always
     stop_grace_period: 1m
-    image: nexus.citeck.ru/ecos-model:2.28.2
+    image: nexus.citeck.ru/ecos-model:2.28.10
     expose:
       - 8094/tcp
     env_file:
