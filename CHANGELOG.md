@@ -13,6 +13,8 @@
 - Service Desk. Added SLA2 to journal
 - Module "Contracts". Updated with DMN approval process 
 - Optimized attributes calculation for email multi-templates
+- Journals. Optimized data loading and data display
+- Doclib. Uploading multiple files, folder with subfolders and files, deleting and moving files and folders
 
 #### Fixed
 
@@ -24,6 +26,7 @@
 - KeyManagementException: problem accessing trust store
 - Files doesn't deleted from S3 after deleting in Citeck
 - Module "Order pass". Notification error
+- Graphical statistics: incorrect display of widget
 
 ## [2024.8.3] - 2024-10-21
 
