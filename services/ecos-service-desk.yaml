@@ -10,7 +10,7 @@ services:
     hostname: ecos-service-desk-app
     restart: always
     stop_grace_period: 1m
-    image: nexus.citeck.ru/ecos-service-desk:1.13.2
+    image: nexus.citeck.ru/ecos-service-desk:1.13.8
     env_file:
       - ./environments/ecos-service-desk-app.env
     networks:
