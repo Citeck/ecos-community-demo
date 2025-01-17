@@ -24,9 +24,7 @@
 - Service Desk. Can't change status of ticket
 - Name can't be changed for old journal settings
 - KeyManagementException: problem accessing trust store
-- Files doesn't deleted from S3 after deleting in Citeck
 - Module "Order pass". Notification error
-- Graphical statistics: incorrect display of widget
 
 ## [2024.8.3] - 2024-10-21
 
