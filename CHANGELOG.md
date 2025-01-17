@@ -2,7 +2,7 @@
 
 # ECOS Changelog
 
-## [2024.10] - 2024-12-27
+## [2024.10] - 2025-01-22
 
 ### Added
 
@@ -14,7 +14,7 @@
 - Module "Contracts". Updated with DMN approval process 
 - Optimized attributes calculation for email multi-templates
 - Journals. Optimized data loading and data display
-- Doclib. Uploading multiple files, folder with subfolders and files, deleting and moving files and folders
+- Doclib. Uploading multiple files, folder with subfolders and files, deleting and moving files and folders, validation of identical files
 
 #### Fixed
 
