@@ -76,7 +76,7 @@ permissions to save changes to the `hosts` file.
 #### 5. Access the ECOS Community Demo:
 
 Once the Docker containers are up and running and the host entry is added to the `.hosts` file, you can access the
-Citeck ECOS Community Demo by opening your web browser and visiting `http://ecos-community-demo/`. The demo should be
+Citeck ECOS Community Demo by opening your web browser and visiting `http://localhost/`. The demo should be
 available at this URL.
 
 ## Usage
