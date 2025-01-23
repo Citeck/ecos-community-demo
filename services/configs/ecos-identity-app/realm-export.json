@@ -310,7 +310,7 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "2996117d-9a33-4e06-b48a-867ce6a235db",
       "redirectUris": [
-        "http://ecos-community-demo*"
+        "http://localhost*"
       ],
       "webOrigins": [],
       "notBefore": 0,

@@ -8,7 +8,7 @@ spring:
     password: notificationspassword
 ecos-notifications:
   alfresco:
-    url: https://ecos-community-demo
+    url: http://localhost
     authentication:
       username: notifications_micro
       password: ec0spa55wd
