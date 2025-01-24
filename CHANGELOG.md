@@ -2,13 +2,13 @@
 
 # ECOS Changelog
 
-## [2024.10] - 2025-01-22
+## [2024.10] - 2025-01-27
 
 ### Added
 
 - BPMN. Added new BPMN event - User Action
-- BPMN. Event type Signal.Added select status from component.
-- Kanban board. Setting to hide items older than
+- BPMN. Event type Signal.Added select status from component
+- Kanban board. Added setting "Card fields label layout" 
 - Service Desk. New widget "Remaining time" displays remaining SLA time for each technical support line
 - Service Desk. Added SLA2 to journal
 - Module "Contracts". Updated with DMN approval process 
