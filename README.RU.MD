@@ -1,6 +1,6 @@
 # ECOS Community Demo
 
-**Read this in other languages: [Русский](README.RU.md)**
+**Read this in other languages: [Английский](README.md)**
 
 Данный репозиторий представляет собой настройку Docker Compose для запуска «Citeck ECOS Community Demo». 
 
