@@ -1,5 +1,7 @@
 # ECOS Community Demo
 
+**Read this in other languages: [Русский](README.RU.md)**
+
 Данный репозиторий представляет собой настройку Docker Compose для запуска «Citeck ECOS Community Demo». 
 
 **Citeck ECOS** – система управления корпоративным контентом, позволяющая управлять бизнес-процессами, документами и задачами.
