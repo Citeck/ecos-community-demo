@@ -2,7 +2,7 @@
 
 # ECOS Community Demo
 
-**Read this in other languages: [Русский](README.RU.md).**
+**Read this in other languages: [Русский](README.RU.md)**
 
 This repository provides a Docker Compose setup for running the `Citeck ECOS Community Demo`. The Citeck ECOS is an
 enterprise content management system that allows managing business processes, documents, and tasks.
