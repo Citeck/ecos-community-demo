@@ -8,9 +8,11 @@ services:
     hostname: ecos-proxy-app
     restart: always
     stop_grace_period: 1m
-    image: nexus.citeck.ru/ecos-proxy-oidc:2.21.5
+    image: nexus.citeck.ru/ecos-proxy-oidc:2.22.3
     ports:
       - 80:80/tcp
+    volumes:
+      - ./configs/ecos-identity-app/lua_oidc_full_access.lua:/etc/nginx/includes/lua_oidc_full_access.lua:ro
     env_file:
       - ./environments/ecos-proxy-app.env
     networks:

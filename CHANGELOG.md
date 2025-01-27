@@ -2,6 +2,30 @@
 
 # ECOS Changelog
 
+## [2024.10] - 2025-01-27
+
+### Added
+
+- BPMN. Added new BPMN event - User Action
+- BPMN. Event type Signal.Added select status from component
+- Kanban board. Added setting "Card fields label layout" 
+- Service Desk. New widget "Remaining time" displays remaining SLA time for each technical support line
+- Service Desk. Added SLA2 to journal
+- Module "Contracts". Updated with DMN approval process 
+- Optimized attributes calculation for email multi-templates
+- Journals. Optimized data loading and data display
+- Doclib. Uploading multiple files, folder with subfolders and files, deleting and moving files and folders, validation of identical files
+
+#### Fixed
+
+- Data type is ignored when uploading to excel
+- SLA doesn't change when the priority is changed
+- Module "ORD". Business process doesn't start
+- Service Desk. Can't change status of ticket
+- Name can't be changed for old journal settings
+- KeyManagementException: problem accessing trust store
+- Module "Order pass". Notification error
+
 ## [2024.8.3] - 2024-10-21
 
 ### Fixed
