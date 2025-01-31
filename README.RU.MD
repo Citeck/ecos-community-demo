@@ -1,3 +1,5 @@
+![Citeck ECOS Logo](https://raw.githubusercontent.com/Citeck/ecos-ui/master/public/img/logo/ecos-logo.png)
+
 # Citeck Community Demo
 
 **На других языках: [Английский](README.md)**
