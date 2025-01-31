@@ -1,10 +1,10 @@
-![Citeck ECOS Logo](https://raw.githubusercontent.com/Citeck/ecos-ui/master/public/img/logo/ecos-logo.png)
+![Citeck ECOS Logo](https://raw.githubusercontent.com/Citeck/ecos-ui/master/public/img/logo/ecos-logo.svg)
 
-# ECOS Community Demo
+# Citeck Community Demo
 
 **Read this in other languages: [Русский](README.RU.MD)**
 
-This repository provides a Docker Compose setup for running the `Citeck ECOS Community Demo`. The Citeck ECOS is an
+This repository provides a Docker Compose setup for running the `Citeck Community Demo`. The Citeck is an
 enterprise content management system that allows managing business processes, documents, and tasks.
 
 ## Prerequisites
@@ -42,21 +42,21 @@ docker-compose up -d
 This command will build and start the necessary Docker containers. It may take a few minutes to download the required
 images and set up the environment.
 
-#### 4. Access the ECOS Community Demo:
+#### 4. Access the Citeck Community Demo:
 
 Once the Docker containers are up and running, you can access the
-Citeck ECOS Community Demo by opening your web browser and visiting `http://localhost/`. The demo should be
+Citeck Community Demo by opening your web browser and visiting `http://localhost/`. The demo should be
 available at this URL.
 
 ## Usage
 
-The Citeck ECOS Community Demo provides a pre-configured environment for testing and exploring the capabilities of the
-ECOS system. You can log in using the following credentials:
+The Citeck Community Demo provides a pre-configured environment for testing and exploring the capabilities of the
+Citeck system. You can log in using the following credentials:
 
 - Username: `admin`
 - Password: `admin`
 
-Please note that this is a demo setup, and it is not recommended for production use. If you want to use Citeck ECOS in a
+Please note that this is a demo setup, and it is not recommended for production use. If you want to use Citeck in a
 production environment, please refer to the official documentation for deployment instructions.
 
 ## Stop and Cleanup
@@ -76,12 +76,12 @@ docker-compose down --volumes
 
 ## Additional Resources
 
-For more information about Citeck ECOS and its features, please refer to the official
-documentation: [Citeck ECOS Documentation](https://citeck-ecos.readthedocs.io/ru/latest/index.html)
+For more information about Citeck and its features, please refer to the official
+documentation: [Citeck Documentation](https://citeck-ecos.readthedocs.io/ru/latest/index.html)
 
 ## License
 
-This Docker Compose setup is licensed under the [LGPL License](LICENSE). Please note that Citeck ECOS has its own
+This Docker Compose setup is licensed under the [LGPL License](LICENSE). Please note that Citeck has its own
 licensing terms and conditions, which you should review separately.
 
 ## Warning
